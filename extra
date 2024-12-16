@@ -1,0 +1,143 @@
+https://code.visualstudio.com/ > Install
+https://nodejs.org/en > Install
+https://git-scm.com/downloads > Install
+https://www.postman.com/downloads/ >Install
+https://github.com/ > Create Account
+https://github.com/Aakashdeveloper > Follow
+
+//extension
+> vscode-icons
+> githistory
+> gitlens
+> code spell checker
+> Tabnine
+
+//prequest
+> Html
+> css
+> Bootstrap (good to have)
+> Basic Javascript
+(ifelse, function, loop, array, object, variable
+map, filter, indexof, spread, destructuring)
+
+//////////(3,377,152)
+NPM (registory)
+npm
+(node package manager)
+
+JSON
+Javascript Object Notation
+[
+    {
+        name:"Jab we met",
+        rating:4.8,
+        type:"Romantic"
+    },
+    {
+        name:"Avengers",
+        rating:4.7,
+        type:"Action"
+    }
+]
+
+package.json
+> entry point to the app
+> command (start,build,test)
+> contains meta data (name,version,description)
+> package required for the app
+
+
+//Step to generate package.json
+** NodeJs must be installed
+> open terminal and go inside folder
+> npm init 
+> Answer all questions
+> yes
+> npm init -y
+
+//Step to install packages
+** NodeJs must be installed
+> open terminal and go inside folder
+> npm i packagename
+
+major 
+minor > ^ (caret)
+patch > ~ (Tilde)
+
+
+global package (to generate app)
+///generate react app
+> open cmd as admin
+> npm i -g create-react-app
+> close cmd
+
+
+> open new cmd not as admin
+> go inside folder where you want app
+> create-react-app appname
+
+-----------------------
+> open new cmd not as admin
+> go inside folder where you want app
+> npx create-react-app appname
+
+
+///Step to start react app
+> open new cmd not as admin
+> go inside folder
+> npm start
+> default > http://localhost:3000/
+
+react > main library
+react-dom > help to display content on screen
+react-script> help to bundle and run the app
+
+
+npm i react react-dom react-script
+
+npm i react@18.0.0 react-dom react-script
+
+React
+React is a javascript library which help to build single page application
+with component based structure
+
+virtual DOM
+> ligth weight copy of actual dom
+> Reconciliation algo
+> diffing
+
+
+classBase
+> logical component
+> we can maintain state and do side effects(api calling)
+> they have lifecycle
+
+functional
+> dumb component
+> only use for display purpose
+
+
+hooks
+
+JSX
+JavaScript XML
+
+
+function add(a,b){
+    var out = [a,b]
+    return out
+}
+
+add(1,2)
+[1,2]
+
+
+state
+> Act like local variable
+> every component can have it own state
+> we can update the value of state (mutable)
+> With every state change component will rerender
+
+props
+> immutable
+> Help to transfer data between 2 nested component

@@ -1,0 +1,26 @@
+import React,{Fragment} from 'react';
+
+const Header = () => {
+
+    const myStyle = {
+        header:{
+            backgroundColor:'tomato',
+            textAlign:'center',
+            color:'white'
+        },
+        logo:{
+            fontSize:'30px'
+        }
+    }
+
+    return(
+        <header style={myStyle.header}>
+            <div style={myStyle.logo}>Edu Ramp</div>
+            <input/>
+            <div style={{fontSize:'20px',color:'white'}}>User Text Here</div>
+            <hr/>
+        </header>
+    )
+}
+
+export default Header
