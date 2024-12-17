@@ -1,45 +1,38 @@
-import React,{Component} from 'react';
+import React,{useState} from 'react';
 import './Header.css';
 
-class Header extends Component{
+const Header = (props) => {
 
-    constructor(){
-        super()
+    const [title] = useState("React Search App")
+    const [count,setCount] = useState(0)
+    const [keyword,setKeyword] = useState('User Input Here')
+   
 
-        console.log("inside constructor")
-
-        this.state={
-            title:'React Search App',
-            count:0
-        }
+    const handleClick = () => {
+        setCount(count+1)
     }
 
-    render(){
-        console.log("inside render")
-        return(
-                <header>
-                    <div className="logo">{this.state.title}</div>
-                    <input/>
-                    <div id="userText">User Text Here</div>
-                    <div>
-                        <h2>{this.state.count}</h2>
-                        <button>Counter</button>
-                    </div>
-                    <hr/>
-                </header>
-            )
+    const handleChange = (event) => {
+        console.log(event.target.value)
+        setKeyword(event.target.value)
+        props.userText(event.target.value)
     }
+
+    return(
+        <header>
+            <div className="logo">{title}</div>
+            <input onChange={handleChange}/>
+            <div id="userText">{keyword}</div>
+            {/* <div>
+                <h2>{count}</h2>
+                <button onClick={handleClick}>Counter</button>
+            </div> */}
+            <hr/>
+        </header>
+    )
+    
 }
 
-// const Header = () => {
-//     return(
-//         <header>
-//             <div className="logo">Edu Ramp</div>
-//             <input/>
-//             <div id="userText">User Text Here</div>
-//             <hr/>
-//         </header>
-//     )
-// }
+
 
 export default Header
