@@ -215,3 +215,18 @@ queryParams
 (get) allorder>            
        
 (get) restaurants>         http://3.17.216.66:4000/restaurants
+
+
+componentDidMount
+componentDidUpdate
+componentWillUnMount
+
+
+cookies
+localStorage
+> Persistant
+> only delete when we clean it
+
+sessionStorage
+> temp
+> remove as soon as we close tab

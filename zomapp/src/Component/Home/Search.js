@@ -1,0 +1,85 @@
+import React,{useState,useEffect} from 'react';
+import './Search.css';
+const base_url = process.env.REACT_APP_API_URL
+
+const Search = () => {
+
+    const [location,setLocation] = useState([]);
+    const [restaurants,setRestaurants] = useState([]);
+
+
+    useEffect(() => {
+       //api calling on page load
+       fetch(`${base_url}/location`,{method:'GET'})
+       //return promise
+       .then((res) => res.json())
+       //return data
+       .then((data) => {
+          // console.log(data)
+           setLocation(data)
+       })
+       .catch((err) => {
+           console.log(err)
+          
+       })
+
+       return () => {
+        console.log('Cleanup on unmount on search')
+       }
+    },[])
+
+    const renderCity = (data) => {
+        if(data){
+            return data.map((item) => {
+                return(
+                    <option key={item._id} value={item.state_id}>{item.state}</option>
+                )
+            })
+        }
+    }
+
+    const handleCity = (event)=>{
+        let StateId = event.target.value;
+        fetch(`${base_url}/restaurant?stateId=${StateId}`,{method:'GET'})
+        .then((res) => res.json())
+        .then((data) => {setRestaurants(data)})
+    }
+
+    const renderRest = (data) => {
+        if(data){
+            return data.map((item) => {
+                return(
+                    <option key={item._id} value={item.restaurant_id}>
+                        {item.restaurant_name} | {item.address}
+                    </option>
+                )
+            })
+        }
+    }
+
+    return(
+        <div className='search'>
+            <div id="logo">
+                <span>D!</span>
+            </div>
+            <div id="heading">
+                Search Place Near To You
+            </div>
+            <div id="dropdown">
+                <select id="city-dropdown" onChange={handleCity}>
+                    <option>----SELECT CITY----</option>
+                    {renderCity(location)}
+                </select>
+                <select class="restSelect">
+                    <option>----SELECT Restaurants----</option>
+                    {renderRest(restaurants)}
+                </select>
+            </div>
+              
+        </div>
+       
+    )
+}
+
+
+export default Search
