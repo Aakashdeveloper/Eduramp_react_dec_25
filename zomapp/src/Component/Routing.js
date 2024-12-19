@@ -6,6 +6,8 @@ import Main from './Main';
 import Home from './Home/home';
 import Listing from './listing';
 import Details from './Details/details';
+import PlaceOrder from './orders/placerOrder';
+import ViewOrder from './orders/viewOrder';
 const NotFound = () => <h1>404- Page Not Found</h1>
 
 
@@ -18,6 +20,8 @@ const Routing =() => {
                     <Route index element={<Home/>}/>
                     <Route path="listing/:mealId" element={<Listing/>}/>
                     <Route path="details" element={<Details/>}/>
+                    <Route path="placeOrder/:restName" element={<PlaceOrder/>}/>
+                    <Route path="viewOrder" element={<ViewOrder/>}/>
 
                     
                     {/* Catch All Route for 404 */}

@@ -2,11 +2,10 @@ import React,{useState,useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import axios from 'axios';
 import './listing.css';
+import CuisineFilter from '../filters/cuisineFilter';
 import ListingDisplay from './listingDisplay';
 
 const base_url = process.env.REACT_APP_API_URL;
-
-
 
 const Listing = () => {
 
@@ -24,11 +23,16 @@ const Listing = () => {
         }
     },[])
 
+    const setDatPerFilter = (data) => {
+        setRestaurant(data)
+    }
+
     return(
         <div className='row'>
             <div id='mainListing'>
                 <div id="filter">
-
+                    <CuisineFilter mealId={mealId}
+                    restPerCuisine={(data) => {setDatPerFilter(data)}}/>
                 </div>
                 <ListingDisplay listData={restaurant}/>
 

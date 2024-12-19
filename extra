@@ -230,3 +230,11 @@ localStorage
 sessionStorage
 > temp
 > remove as soon as we close tab
+
+
+json-server
+//install globally
+> open cmd as admin
+> npm i -g json-server
+
+json-server --watch data.json --port 8933

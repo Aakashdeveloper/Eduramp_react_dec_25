@@ -1,25 +1,36 @@
 import React,{useState,useEffect} from 'react';
 import './details.css';
 import axios from 'axios';
-import {Link,useSearchParams} from 'react-router-dom';
+import {Link,useSearchParams, useNavigate} from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import Menu from './menuDisplay';
 
 const base_url = process.env.REACT_APP_API_URL;
 
 const Details = () => {
 
+    const navigate = useNavigate()
     const [details,setDetails] = useState({});
+    const [menu,setMenu] = useState([]);
+    const [userItem,setUserItem] = useState([]);
     const [searchParams] = useSearchParams()
     const mealId = sessionStorage.getItem('mealId')?sessionStorage.getItem('mealId'):1
+
+    const addToCart = (data) => {
+        console.log(">>>addToCart",data)
+        setUserItem(data)
+    }
+
 
     useEffect(() => {
         const fetchData = async()=> {
             try{
                 let restId = searchParams.getAll('restId');
                 let response = await axios.get(`${base_url}/details/${restId}`)
-                console.log(">>>",response.data[0])
+                let menuResponse = await axios.get(`${base_url}/menu/${restId}`)
                 setDetails(response.data[0])
+                setMenu(menuResponse.data)
             }catch(err){
                 console.error(err)
             }
@@ -28,6 +39,11 @@ const Details = () => {
         fetchData()
 
     },[])
+
+    const proceed = () => {
+        sessionStorage.setItem('menu',userItem);
+        navigate(`/placeOrder/${details.restaurant_name}`)
+    }
 
     return(
         <>
@@ -57,21 +73,31 @@ const Details = () => {
                     <br/>
                     <Tabs>
                         <TabList>
-                            <Tab>Title 1</Tab>
-                            <Tab>Title 2</Tab>
-                            <Tab>Title 3</Tab>
+                            <Tab>About</Tab>
+                            <Tab>Contact</Tab>
+                           
                         </TabList>
 
                         <TabPanel>
-                            <h2>Any content 1</h2>
+                                <h2>{details.restaurant_name}</h2>
+                                <p>{details.restaurant_name}  is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                                </p>
+                            </TabPanel>
+                            <TabPanel>
+                                <h2>{details.address}</h2>
+                                <h3>Contact: {details.contact_number}</h3>
                         </TabPanel>
-                        <TabPanel>
-                            <h2>Any content 2</h2>
-                        </TabPanel>
-                        <TabPanel>
-                            <h2>Any content 3</h2>
-                        </TabPanel>
+                       
                     </Tabs>
+                    <Link to={`/listing/${mealId}`} className="btn btn-danger">Back</Link>&nbsp;
+                    <button className='btn btn-success' onClick={proceed}>Proceed</button>
+                </div>
+                <div className='col-md-12'>
+                    <hr/>
+                    <center><h2>Menu</h2></center>
+                    <hr/>
+                    <Menu menuData={menu}
+                    finalOrder={(data) => {addToCart(data)}}/>
                 </div>
             </div>
         </>
