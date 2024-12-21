@@ -2,7 +2,8 @@ import React,{useState} from 'react';
 import Header from './Header';
 import Footer from './footer';
 import ProductDisplay from './ProductDisplay';
-import JSON from './data.json'
+import JSON from './data.json';
+
 
 const App = () => {
 

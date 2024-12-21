@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import './Header.css';
+import MemoComponent from './MemoComponent';
 
 const Header = (props) => {
 
@@ -23,6 +24,7 @@ const Header = (props) => {
             <div className="logo">{title}</div>
             <input onChange={handleChange}/>
             <div id="userText">{keyword}</div>
+            <MemoComponent/>
             {/* <div>
                 <h2>{count}</h2>
                 <button onClick={handleClick}>Counter</button>

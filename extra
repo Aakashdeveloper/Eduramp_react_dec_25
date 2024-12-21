@@ -257,3 +257,16 @@ https://github.com/Aakashdeveloper/node-jwt-login
 
 /// generate ts app
 npm create vite@latest reactTS
+
+action
+> plan javascript function to achieve side effect(api calling)
+reducer
+> pure function that take update state from action and pass to store
+store 
+> central repository for application state
+view
+> Display content on screen
+
+docker build -t imageName .
+docker run -p 3000:8760 imageName
+
