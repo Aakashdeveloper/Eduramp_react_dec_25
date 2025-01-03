@@ -269,3 +269,4 @@ view
 
 docker build -t imageName .
 docker run -p 3000:8760 imageName
+
